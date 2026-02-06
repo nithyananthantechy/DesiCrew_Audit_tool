@@ -1,0 +1,87 @@
+
+export enum Role {
+  CONTRIBUTOR = 'Contributor',
+  TEAM_LEAD = 'Team Lead',
+  MANAGER = 'Manager',
+  CEO_CGO = 'CEO/CGO',
+  SUPER_ADMIN = 'Super Admin'
+}
+
+export enum Department {
+  HR = 'HR',
+  IT = 'IT',
+  ADMIN = 'Admin',
+  PRODUCTION = 'Production'
+}
+
+export enum AuditStatus {
+  DRAFT = 'Draft',
+  SUBMITTED = 'Submitted',
+  MANAGER_APPROVED = 'Manager Approved',
+  REJECTED = 'Rejected',
+  FINAL_AUDIT_COMPLETED = 'Final Audit Completed'
+}
+
+export enum ActivityType {
+  LOGIN = 'Login',
+  SUBMISSION = 'Submission',
+  APPROVAL = 'Approval',
+  REJECTION = 'Rejection',
+  STATUS_CHANGE = 'Status Change',
+  PROFILE_UPDATE = 'Profile Update',
+  SYSTEM = 'System'
+}
+
+export interface ActivityLog {
+  id: string;
+  userId: string;
+  userName: string;
+  department: Department;
+  action: ActivityType;
+  description: string;
+  timestamp: string;
+}
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: Role;
+  department: Department;
+  isActive: boolean;
+  profilePic?: string;
+}
+
+export interface ChecklistItem {
+  id: string;
+  department: Department;
+  task: string;
+}
+
+export interface Evidence {
+  id: string;
+  userId: string;
+  checklistItemId: string;
+  department: Department;
+  submissionDate: string;
+  fileUrl?: string;
+  comment: string;
+  status: AuditStatus;
+  managerComment?: string;
+  cgoComment?: string;
+}
+
+export interface DMAXReport {
+  id: string;
+  userId: string;
+  userName: string;
+  department: Department;
+  month: string;
+  year: number;
+  content: string;
+  status: AuditStatus;
+  submissionDate: string;
+  fileName?: string;
+  fileUrl?: string;
+  fileSize?: string;
+}
