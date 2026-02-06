@@ -13,7 +13,7 @@ export enum Department {
   HR = 'HR',
   IT = 'IT',
   ADMIN = 'Admin',
-  PRODUCTION = 'Production',
+  OPERATIONS = 'Operations',
   AUDIT = 'Audit'
 }
 

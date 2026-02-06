@@ -28,7 +28,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ dmax, users, setUsers, activiti
     name: '',
     email: '',
     role: Role.CONTRIBUTOR,
-    department: Department.PRODUCTION,
+    department: Department.OPERATIONS,
     isActive: true
   });
 

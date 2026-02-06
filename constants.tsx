@@ -44,7 +44,7 @@ export const MOCK_USERS: User[] = [
     name: 'Rahul Varma',
     email: 'rahul.v@desicrew.in',
     role: Role.CONTRIBUTOR,
-    department: Department.IT,
+    department: Department.OPERATIONS,
     isActive: true,
   }
 ];
@@ -56,9 +56,9 @@ export const DEPARTMENT_CHECKLISTS: ChecklistItem[] = [
   { id: 'it1', department: Department.IT, task: 'Server Patch Management Log' },
   { id: 'it2', department: Department.IT, task: 'Access Review Audit Trail' },
   { id: 'it3', department: Department.IT, task: 'Backup & Disaster Recovery Test' },
-  { id: 'pr1', department: Department.PRODUCTION, task: 'Daily Output Verification' },
-  { id: 'pr2', department: Department.PRODUCTION, task: 'Quality Assurance Sample Test' },
-  { id: 'pr3', department: Department.PRODUCTION, task: 'Shift Handover Documentation' }
+  { id: 'op1', department: Department.OPERATIONS, task: 'Daily Output Verification' },
+  { id: 'op2', department: Department.OPERATIONS, task: 'Quality Assurance Sample Test' },
+  { id: 'op3', department: Department.OPERATIONS, task: 'Shift Handover Documentation' }
 ];
 
 export const STATUS_COLORS: Record<AuditStatus, string> = {

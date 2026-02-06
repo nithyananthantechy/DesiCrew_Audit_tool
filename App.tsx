@@ -33,11 +33,23 @@ const App: React.FC = () => {
     const savedUsers = localStorage.getItem('dc_users');
     const savedActivity = localStorage.getItem('dc_activity');
     
-    if (savedEvidence) setEvidenceStore(JSON.parse(savedEvidence));
-    if (savedDmax) setDmaxStore(JSON.parse(savedDmax));
-    if (savedActivity) setActivityStore(JSON.parse(savedActivity));
+    // Migration helper: ensures 'Production' is renamed to 'Operations'
+    const migrate = (items: any[]) => {
+      if (!Array.isArray(items)) return [];
+      return items.map(item => {
+        if (item.department === 'Production') {
+          return { ...item, department: Department.OPERATIONS };
+        }
+        return item;
+      });
+    };
+
+    if (savedEvidence) setEvidenceStore(migrate(JSON.parse(savedEvidence)));
+    if (savedDmax) setDmaxStore(migrate(JSON.parse(savedDmax)));
+    if (savedActivity) setActivityStore(migrate(JSON.parse(savedActivity)));
+    
     if (savedUsers) {
-      setUserStore(JSON.parse(savedUsers));
+      setUserStore(migrate(JSON.parse(savedUsers)));
     } else {
       setUserStore(MOCK_USERS);
     }
