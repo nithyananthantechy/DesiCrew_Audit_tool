@@ -1,21 +1,15 @@
+
 import { Department, ChecklistItem, User, Role, AuditStatus } from './types';
 
-// Updated Branding Constants
 export const APP_NAME = "Compliance & Audit Portal";
 export const COMPANY_NAME = "DesiCrew Solutions Private Limited";
 export const COMPANY_TAGLINE = "Empowering Compliance Through Digital Excellence";
-
-/** 
- * Static Logo Path
- * Replaced the base64 string with a static asset path to ensure cleaner code 
- * and better browser caching for the corporate logo.
- */
 export const DESICREW_LOGO = "logo.png";
 
 export const MOCK_USERS: User[] = [
   {
     id: 'u1',
-    name: 'Admin User',
+    name: 'System Admin',
     email: 'admin@desicrew.in',
     role: Role.SUPER_ADMIN,
     department: Department.ADMIN,
@@ -23,6 +17,22 @@ export const MOCK_USERS: User[] = [
   },
   {
     id: 'u2',
+    name: 'Anjali Nair',
+    email: 'anjali.n@desicrew.in',
+    role: Role.INTERNAL_AUDITOR,
+    department: Department.AUDIT,
+    isActive: true,
+  },
+  {
+    id: 'u3',
+    name: 'Suresh Kumar',
+    email: 'suresh.k@desicrew.in',
+    role: Role.EXTERNAL_AUDITOR,
+    department: Department.AUDIT,
+    isActive: true,
+  },
+  {
+    id: 'u4',
     name: 'Priya Sharma',
     email: 'priya.s@desicrew.in',
     role: Role.MANAGER,
@@ -30,33 +40,22 @@ export const MOCK_USERS: User[] = [
     isActive: true,
   },
   {
-    id: 'u3',
+    id: 'u5',
     name: 'Rahul Varma',
     email: 'rahul.v@desicrew.in',
     role: Role.CONTRIBUTOR,
-    department: Department.HR,
-    isActive: true,
-  },
-  {
-    id: 'u4',
-    name: 'Amit Patel',
-    email: 'amit.p@desicrew.in',
-    role: Role.CEO_CGO,
-    department: Department.ADMIN,
+    department: Department.IT,
     isActive: true,
   }
 ];
 
 export const DEPARTMENT_CHECKLISTS: ChecklistItem[] = [
-  // HR
   { id: 'hr1', department: Department.HR, task: 'Monthly Payroll Register Approval' },
   { id: 'hr2', department: Department.HR, task: 'New Hire Documentation Completion' },
   { id: 'hr3', department: Department.HR, task: 'Statutory Compliance (PF/ESI) Filing' },
-  // IT
   { id: 'it1', department: Department.IT, task: 'Server Patch Management Log' },
   { id: 'it2', department: Department.IT, task: 'Access Review Audit Trail' },
   { id: 'it3', department: Department.IT, task: 'Backup & Disaster Recovery Test' },
-  // Production
   { id: 'pr1', department: Department.PRODUCTION, task: 'Daily Output Verification' },
   { id: 'pr2', department: Department.PRODUCTION, task: 'Quality Assurance Sample Test' },
   { id: 'pr3', department: Department.PRODUCTION, task: 'Shift Handover Documentation' }

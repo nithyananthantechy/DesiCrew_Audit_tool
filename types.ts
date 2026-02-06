@@ -3,7 +3,9 @@ export enum Role {
   CONTRIBUTOR = 'Contributor',
   TEAM_LEAD = 'Team Lead',
   MANAGER = 'Manager',
-  CEO_CGO = 'CEO/CGO',
+  HR = 'HR',
+  INTERNAL_AUDITOR = 'Internal Auditor',
+  EXTERNAL_AUDITOR = 'External Auditor',
   SUPER_ADMIN = 'Super Admin'
 }
 
@@ -11,15 +13,16 @@ export enum Department {
   HR = 'HR',
   IT = 'IT',
   ADMIN = 'Admin',
-  PRODUCTION = 'Production'
+  PRODUCTION = 'Production',
+  AUDIT = 'Audit'
 }
 
 export enum AuditStatus {
   DRAFT = 'Draft',
   SUBMITTED = 'Submitted',
-  MANAGER_APPROVED = 'Manager Approved',
+  MANAGER_APPROVED = 'Auditor Approved',
   REJECTED = 'Rejected',
-  FINAL_AUDIT_COMPLETED = 'Final Audit Completed'
+  FINAL_AUDIT_COMPLETED = 'Certified'
 }
 
 export enum ActivityType {

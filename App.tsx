@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { User, Role, Department, Evidence, DMAXReport, AuditStatus, ActivityLog, ActivityType } from './types';
-import { MOCK_USERS, DESICREW_LOGO, APP_NAME } from './constants';
+import { MOCK_USERS, APP_NAME } from './constants';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
@@ -22,12 +23,10 @@ const App: React.FC = () => {
   const [userStore, setUserStore] = useState<User[]>([]);
   const [activityStore, setActivityStore] = useState<ActivityLog[]>([]);
 
-  // Page title sync
   useEffect(() => {
     document.title = currentUser ? `${APP_NAME} | ${currentUser.name}` : APP_NAME;
   }, [currentUser]);
 
-  // Simulation of persistent data
   useEffect(() => {
     const savedEvidence = localStorage.getItem('dc_evidence');
     const savedDmax = localStorage.getItem('dc_dmax');
@@ -75,13 +74,11 @@ const App: React.FC = () => {
       setLoginState('welcome');
       logActivity(user, ActivityType.LOGIN, `User logged into the compliance portal.`);
       
-      // Auto-redirect after 2 seconds
       setTimeout(() => {
         setLoginState('active');
-        // Role-based initial tab routing
         if (user.role === Role.SUPER_ADMIN) setActiveTab('admin');
-        else if (user.role === Role.CEO_CGO) setActiveTab('executive');
-        else if (user.role === Role.MANAGER) setActiveTab('approvals');
+        else if (user.role === Role.EXTERNAL_AUDITOR) setActiveTab('executive');
+        else if (user.role === Role.INTERNAL_AUDITOR) setActiveTab('approvals');
         else setActiveTab('dashboard');
       }, 2000);
 
@@ -91,9 +88,7 @@ const App: React.FC = () => {
   };
 
   const handleLogout = () => {
-    if (currentUser) {
-      logActivity(currentUser, ActivityType.SYSTEM, `User signed out.`);
-    }
+    if (currentUser) logActivity(currentUser, ActivityType.SYSTEM, `User signed out.`);
     setLoginState('landing');
     setCurrentUser(null);
   };
@@ -104,17 +99,9 @@ const App: React.FC = () => {
     logActivity(updatedUser, ActivityType.PROFILE_UPDATE, `User updated their profile information.`);
   };
 
-  if (loginState === 'landing') {
-    return <LandingPage onLoginClick={() => setLoginState('login')} />;
-  }
-
-  if (loginState === 'login') {
-    return <LoginPage onLogin={handleLogin} />;
-  }
-
-  if (loginState === 'welcome' && currentUser) {
-    return <WelcomeScreen user={currentUser} />;
-  }
+  if (loginState === 'landing') return <LandingPage onLoginClick={() => setLoginState('login')} />;
+  if (loginState === 'login') return <LoginPage onLogin={handleLogin} />;
+  if (loginState === 'welcome' && currentUser) return <WelcomeScreen user={currentUser} />;
 
   const renderContent = () => {
     if (!currentUser) return null;

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Role } from '../types';
 import { 
@@ -7,8 +8,7 @@ import {
   CheckSquare, 
   ShieldCheck, 
   Users, 
-  LogOut,
-  Building2
+  LogOut
 } from 'lucide-react';
 import { DESICREW_LOGO, COMPANY_NAME, APP_NAME } from '../constants';
 
@@ -21,11 +21,11 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ role, activeTab, setActiveTab, onLogout }) => {
   const menuItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, roles: [Role.CONTRIBUTOR, Role.TEAM_LEAD, Role.MANAGER, Role.CEO_CGO, Role.SUPER_ADMIN] },
-    { id: 'checklists', label: 'My Checklists', icon: ClipboardCheck, roles: [Role.CONTRIBUTOR, Role.TEAM_LEAD, Role.MANAGER] },
-    { id: 'dmax', label: 'DMAX Reports', icon: FileText, roles: [Role.CONTRIBUTOR, Role.TEAM_LEAD, Role.MANAGER, Role.CEO_CGO] },
-    { id: 'approvals', label: 'Audit Inbox', icon: CheckSquare, roles: [Role.MANAGER] },
-    { id: 'executive', label: 'Global Compliance', icon: ShieldCheck, roles: [Role.CEO_CGO, Role.SUPER_ADMIN] },
+    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, roles: [Role.CONTRIBUTOR, Role.TEAM_LEAD, Role.MANAGER, Role.HR, Role.INTERNAL_AUDITOR, Role.EXTERNAL_AUDITOR, Role.SUPER_ADMIN] },
+    { id: 'checklists', label: 'My Checklists', icon: ClipboardCheck, roles: [Role.CONTRIBUTOR, Role.TEAM_LEAD, Role.MANAGER, Role.HR] },
+    { id: 'dmax', label: 'DMAX Reports', icon: FileText, roles: [Role.CONTRIBUTOR, Role.TEAM_LEAD, Role.MANAGER, Role.HR] },
+    { id: 'approvals', label: 'Audit Inbox', icon: CheckSquare, roles: [Role.INTERNAL_AUDITOR] },
+    { id: 'executive', label: 'Compliance Sign-off', icon: ShieldCheck, roles: [Role.EXTERNAL_AUDITOR, Role.SUPER_ADMIN] },
     { id: 'admin', label: 'Admin Panel', icon: Users, roles: [Role.SUPER_ADMIN] },
   ];
 

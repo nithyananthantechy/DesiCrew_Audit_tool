@@ -15,10 +15,11 @@ interface DashboardProps {
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ user, evidence, dmax }) => {
-  const currentMonth = "January"; // Keeping consistent with the app's current context
+  const currentMonth = "January";
   const hasSubmittedDmax = dmax.some(r => r.userId === user.id && r.month === currentMonth);
   
-  const myEvidence = user.role === Role.MANAGER 
+  // HR Role now has department-wide visibility like a Manager
+  const myEvidence = (user.role === Role.MANAGER || user.role === Role.HR)
     ? evidence.filter(e => e.department === user.department)
     : evidence.filter(e => e.userId === user.id);
 
@@ -44,7 +45,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user, evidence, dmax }) => {
           <h1 className="text-2xl font-bold text-slate-900">Welcome, {user.name}</h1>
           <p className="text-slate-500">Department: {user.department} • Role: {user.role}</p>
         </div>
-        {user.role !== Role.CEO_CGO && user.role !== Role.SUPER_ADMIN && !hasSubmittedDmax && (
+        {user.role !== Role.EXTERNAL_AUDITOR && user.role !== Role.SUPER_ADMIN && !hasSubmittedDmax && (
           <div className="bg-amber-50 border border-amber-200 p-4 rounded-2xl flex items-center gap-4 shadow-sm animate-bounce-subtle">
             <div className="bg-amber-500 text-white p-2 rounded-xl">
               <AlertTriangle size={20} />
